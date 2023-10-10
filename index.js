@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import Head from 'next/head'
-import Menu from './components/Menu'
-import Categories from './components/Categories'
-import items from './data'
-import './index.css'
+import React, { useState } from "react";
+import Head from "next/head";
+import Menu from "./components/Menu";
+import Categories from "./components/Categories";
+import "./index.css";
 
 // const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -11,36 +10,36 @@ export async function getStaticProps() {
   // const res = await fetch(`http:localhost:8090/api/menuItem`)
   const res = await fetch(
     `https://swaad-taste-of-kerala.vercel.app/api/menuItem`
-  )
-  const data = await res.json()
+  );
+  const data = await res.json();
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data } };
 }
 
 function App({ data }) {
-  const { data: menuItemsFromApi = null } = data
-  const [menuItems, setMenuItems] = useState(menuItemsFromApi)
+  const { data: menuItemsFromApi = null } = data;
+  const [menuItems, setMenuItems] = useState(menuItemsFromApi);
   const allCategories = [
-    'all',
-    ...new Set(menuItems.map((item) => item.category).flat())
-  ]
+    "all",
+    ...new Set(menuItems.map((item) => item.category).flat()),
+  ];
 
-  const [categories] = useState(allCategories)
+  const [categories] = useState(allCategories);
   // const { data, error, isLoading } = useSWR(
   //   'http://swaad-taste-of-kerala.vercel.app/api/menuItem',
   //   fetch
   // )
-  console.log('click', menuItems, allCategories)
+  console.log("click", menuItems, allCategories);
   const filterItems = (category) => {
-    if (category === 'all') {
-      setMenuItems(menuItemsFromApi)
-      return
+    if (category === "all") {
+      setMenuItems(menuItemsFromApi);
+      return;
     }
     const newItems = menuItemsFromApi.filter((item) =>
       item.category.includes(category)
-    )
-    setMenuItems(newItems)
-  }
+    );
+    setMenuItems(newItems);
+  };
 
   return (
     <>
@@ -61,7 +60,7 @@ function App({ data }) {
         </section>
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
