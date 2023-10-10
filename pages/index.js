@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import Menu from "./components/Menu";
-import Categories from "./components/Categories";
+import Menu from "../components/Menu";
+import Categories from "../components/Categories";
 import "./index.css";
 
 // const fetcher = (...args) => fetch(...args).then((res) => res.json())
